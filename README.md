@@ -23,3 +23,8 @@ mikronavt Infra repository
 		Hostname 10.132.0.3
 		User tol
 		ProxyJump bastion
+
+##Данные для подключения:
+
+	bastion_IP = 35.233.103.154
+	someinternalhost_IP = 10.132.0.3
