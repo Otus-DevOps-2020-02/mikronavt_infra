@@ -32,5 +32,5 @@ mikronavt Infra repository
 # Домашнее задание №4
 
 ### Даннные для подключения
-	testapp_IP = 35.198.167.169
+	testapp_IP = 104.155.97.42
 	testapp_port = 9292
