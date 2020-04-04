@@ -3,7 +3,7 @@ mikronavt Infra repository
 
 # Домашнее задание №3
 
-##Подключение к someinternalhost напрямую:
+### Подключение к someinternalhost напрямую:
 
 1)Добавляем приватный ключ:
 	ssh-add key1
@@ -11,7 +11,7 @@ mikronavt Infra repository
 2) Для входа выполняем команду:
 	ssh -J  tol@35.233.103.154 tol@10.132.0.3
 
-##Подключение с помощью одной команды <i>ssh someinternalhost</i>:
+### Подключение с помощью одной команды <i>ssh someinternalhost</i>:
 
 Прописать в ~/.ssh/config:
 
@@ -24,7 +24,7 @@ mikronavt Infra repository
 		User tol
 		ProxyJump bastion
 
-##Данные для подключения:
+### Данные для подключения:
 
 	bastion_IP = 35.233.103.154
 	someinternalhost_IP = 10.132.0.3
