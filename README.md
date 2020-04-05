@@ -52,3 +52,21 @@ mikronavt Infra repository
 		--allow=tcp:9292 \
 		--source-ranges="0.0.0.0/0" \
 		--target-tags="puma-server"
+
+# Домашнее задание №5
+
+### В ДЗ сделано:
+
+Параметризованный шаблон Packer для создания образа с предустановленными Ruby и Mongodb:
+	/packer/ubuntu16.json
+Файл с пользовательскими параметрами:
+	/packer/variables.json.example
+Для создания образа использовать команду (из директории packer):
+	packer build -var-file=variables.json ubuntu16.json
+
+Шаблон packer для создания образа с предустановленным приложением:
+	/packer/immutable.json
+Для создания образа использовать команду (из директории packer):
+	packer build -var-file=variables.json immutable.json
+Для создания ВМ из образа использовать скрипт:
+	./config-scripts/create-reddit-vm.sh
