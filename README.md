@@ -28,3 +28,27 @@ mikronavt Infra repository
 
 	bastion_IP = 35.233.103.154
 	someinternalhost_IP = 10.132.0.3
+
+# Домашнее задание №4
+
+### Даннные для подключения
+	testapp_IP = 104.155.97.42
+	testapp_port = 9292
+
+### Создание инстанса в GCP с последующим запуском скрипта установок:
+
+	gcloud compute instances create reddit-app\
+		--boot-disk-size=10GB \
+  		--image-family ubuntu-1604-lts \
+  		--image-project=ubuntu-os-cloud \
+  		--machine-type=g1-small \
+  		--tags puma-server \
+  		--restart-on-failure \
+  		--metadata-from-file startup-script=startup_script.sh
+
+### Создание правила для фаервола:
+
+	./bin/gcloud compute firewall-rules create default-puma-server1 \
+		--allow=tcp:9292 \
+		--source-ranges="0.0.0.0/0" \
+		--target-tags="puma-server"
