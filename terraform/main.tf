@@ -14,10 +14,10 @@ provider "google" {
 }
 
 resource "google_compute_instance" "app" {
-  name = "reddit-app"
+  name         = "reddit-app"
   machine_type = "g1-small"
-  zone = "europe-west1-b"
-  tags = ["reddit-app"]
+  zone         = var.zone
+  tags         = ["reddit-app"]
   boot_disk {
     initialize_params {
       image = var.disk_image
@@ -31,26 +31,26 @@ resource "google_compute_instance" "app" {
 
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "tol:${file(var.public_key_path)}"
+    ssh-keys = "appuser:${file(var.public_key_path)}"
   }
 
   connection {
-  type = "ssh"
-  host = self.network_interface[0].access_config[0].nat_ip
-  user = "tol"
-  agent = false
-  # путь до приватного ключа
-  private_key = file("~/.ssh/key1")
-}
+    type  = "ssh"
+    host  = self.network_interface[0].access_config[0].nat_ip
+    user  = "appuser"
+    agent = false
+    # путь до приватного ключа
+    private_key = file(var.private_key_path)
+  }
 
 
   provisioner "file" {
-  source = "files/puma.service"
-  destination = "/tmp/puma.service"
+    source      = "files/puma.service"
+    destination = "/tmp/puma.service"
   }
 
   provisioner "remote-exec" {
-  script = "files/deploy.sh"
+    script = "files/deploy.sh"
   }
 
 }
@@ -62,7 +62,7 @@ resource "google_compute_firewall" "firewall_puma" {
   # Какой доступ разрешить
   allow {
     protocol = "tcp"
-    ports = ["9292"]
+    ports    = ["9292"]
   }
   # Каким адресам разрешаем доступ
   source_ranges = ["0.0.0.0/0"]
