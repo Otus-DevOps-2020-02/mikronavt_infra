@@ -1,0 +1,26 @@
+
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{user `user_project_id`}}",
+            "image_name": "reddit-app-base-{{timestamp}}",
+            "image_family": "reddit-app-base",
+            "source_image_family": "{{user `user_source_image_family`}}",
+            "zone": "europe-west1-b",
+            "ssh_username": "appuser",
+            "machine_type": "{{user `user_machine_type`}}",
+            "image_description" : "Some image with ruby",
+            "disk_size" : "12",
+            "network" : "default",
+            "tags" : "puma-server"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}
