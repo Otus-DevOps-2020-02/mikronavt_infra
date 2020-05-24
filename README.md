@@ -145,3 +145,12 @@ mikronavt Infra repository
 В ansible созданы два окружения - stage и prod.
 Использована community роль jdauphant.nginx.
 Добавлена работа с vault ключами.
+
+# Домашнее задание №11
+
+###Основное задание:
+
+Настроена работа с Vagrant с использованием VirtualBox.
+Доработаны роли для провижионинга в Vagrant.
+Роли тестируются с помощью Molecule и Testinfra.
+Packer собирает образы с использованием ролей.
