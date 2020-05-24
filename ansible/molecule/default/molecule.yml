@@ -2,12 +2,19 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
 platforms:
   - name: instance
-    image: docker.io/pycontribs/centos:7
-    pre_build_image: true
+    box: ubuntu/xenial64
 provisioner:
   name: ansible
+  lint:
+    name: ansible-lint
 verifier:
-  name: ansible
+  name: testinfra
+  lint:
+    name: flake8
